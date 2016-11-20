@@ -1,0 +1,38 @@
+<!--
+* My Application
+* app-account-login - Simple single page app start point
+* @author Paul Smith (smiffy6969)
+* @site component.razilo.net
+* @licence MIT
+-->
+
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	app-account-login { margin: 0; padding: 10px; display: block; width: inherit; background-color: #ddd; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-account-login">
+	<razilo-page layout="page">
+		<h1>Login</h1>
+		<p>LOG IN</p>
+		<button bind-event="{'click': goHome()}">Go to home</button>
+	</razilo-page>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('app-account-login', {
+		attached: function() {
+			console.log('login attached');
+		},
+
+		detached: function() {
+			console.log('login detached');
+		},
+
+		goHome: function() {
+			document.querySelector('razilo-router').setAttribute('value', 'one');
+		}
+	});
+</script>

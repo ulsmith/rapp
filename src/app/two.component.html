@@ -1,0 +1,32 @@
+<!--
+* My Application
+* app-two - Simple single page app start point
+* @author Paul Smith (smiffy6969)
+* @site component.razilo.net
+* @licence MIT
+-->
+
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	app-two { margin: 0; padding: 0; display: block; background-color: #ddd; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-two">
+	<razilo-page layout="page">
+		<p>Component APP TWO</p>
+	</razilo-page>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('app-two', {
+		attached: function() {
+			console.log('two attached');
+		},
+
+		detached: function() {
+			console.log('two detached');
+		}
+	});
+</script>

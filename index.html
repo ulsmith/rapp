@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base href="/">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="Razilo based application base using raziloBind and raziloComponent.">
+		<meta name="keywords" content="js, es6, data, binding, view, model, vm, html, element, library, framework">
+		<title>RAPP - Razilo Application Base</title>
+
+		<!-- Add cloak to ensure applied before page shown -->
+		<style>*[cloak] { opacity: 0; -webkit-transition: opacity 0.5s ease-in-out; -moz-transition: opacity 0.5s ease-in-out; transition: opacity 0.5s ease-in-out; } *[cloak='false'] { opacity: 1; }</style>
+
+		<!-- Generic stuff -->
+		<link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:400,400italic,500,500italic,700,700italic|Pacifico" rel="stylesheet" type="text/css">
+
+		<!-- Bootstrap the app style, logic and root component -->
+		<link rel="stylesheet" type="text/css" href="/build/index.min.css">
+        <script type="text/javascript" src="/build/index.min.js"></script>
+		<link rel="import" href="/src/app/index.component.html"/>
+		<!-- <link rel="import" href="/build/index.vulc.html"/> -->
+	</head>
+	<body>
+		<app-index cloak>
+			<p>Loading...</p>
+		</app-index>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!--
+* My Application
+* app-one - Simple single page app start point
+* @author Paul Smith (smiffy6969)
+* @site component.razilo.net
+* @licence MIT
+-->
+
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	app-one { margin: 0; padding: 0; display: block; width: inherit; background-color: #ddd; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-one">
+	<razilo-page layout="page">
+		<h1>Hello</h1>
+		<p>Component APP ONE</p>
+		<razilo-partial basepath="/assets" partial="partial-file.html"></razilo-partial>
+		<ul>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+			<li>1234</li>
+		</ul>
+	</razilo-page>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('app-one', {
+		attached: function() {
+			console.log('one attached');
+		},
+
+		detached: function() {
+			console.log('one detached');
+		}
+	});
+</script>

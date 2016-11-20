@@ -1,0 +1,1920 @@
+<!--
+* My Application
+* app-index - Simple single page app start point
+* @author Paul Smith (smiffy6969)
+* @site component.razilo.net
+* @licence MIT
+--><!-- DEPENDANCIES --><html><head><meta charset="UTF-8"><!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	app-index { margin: 0; padding: 0; display: block; min-height: 100%; position: relative; }
+	app-index razilo-menu { background-color: #333; color: #eee; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-index">
+	<razilo-menu home="one/six" side-logo="/assets/images/blade-white-50-circle.png" top-logo="/assets/images/blade-white-200-circle.png" side-logo-text="side hello" top-logo-text="top hello" bind-value="route">
+		<razilo-menu-quicklinks>
+			<razilo-menu-quicklink icon="refresh" title="refresh" route="aaa" bind-value="route"></razilo-menu-quicklink>
+			<razilo-menu-quicklink icon="envelope" title="messages" route="bbb" bind-value="route"></razilo-menu-quicklink>
+			<razilo-menu-quicklink icon="question" title="help" route="ccc" bind-value="route"></razilo-menu-quicklink>
+			<razilo-menu-quicklink icon="user" title="user" route="ddd" bind-value="route"></razilo-menu-quicklink>
+			<razilo-menu-quicklink icon="sign-out" title="log out" route="eee" bind-value="route"></razilo-menu-quicklink>
+		</razilo-menu-quicklinks>
+		<razilo-menu-links>
+			<razilo-menu-link icon="dashboard" route="one/six" bind-value="route">One</razilo-menu-link>
+			<razilo-menu-link icon="dashboard" route="two" bind-value="route">Two</razilo-menu-link>
+			<razilo-menu-link icon="dashboard" route="three" bind-value="route">Three</razilo-menu-link>
+			<razilo-menu-link icon="dashboard" route="four" bind-value="route">Four</razilo-menu-link>
+			<razilo-menu-link icon="dashboard" route="partial" bind-value="route">Partial</razilo-menu-link>
+			<razilo-menu-link icon="dashboard" route="404" bind-value="route">404</razilo-menu-link>
+		</razilo-menu-links>
+		<razilo-menu-copyright>
+			<span class="copyright">© Your Company</span>
+		</razilo-menu-copyright>
+	</razilo-menu>
+	<razilo-router default-route="one/six" not-found-route="404" bind-value="route" push-state="">
+		<razilo-router-route route="one/six" component="/src/app/one.component.html" component-name="app-one" cloak=""></razilo-router-route>
+		<razilo-router-route route="two" component="/src/app/two.component.html" component-name="app-two" cloak=""></razilo-router-route>
+		<razilo-router-route route="three" component="/src/app/three.component.html" component-name="app-three" cloak=""></razilo-router-route>
+		<razilo-router-route route="404" component-name="app-404" cloak=""></razilo-router-route>
+		<razilo-router-route route="aaa" url="https://www.google.co.uk" target="_blank"></razilo-router-route>
+	</razilo-router>
+</template>
+
+<!-- LOGIC -->
+
+</head><body><div hidden="" by-vulcanize=""><script>
+    new RaziloComponent('razilo-icon', {
+		attached: function () {
+			// Initial setup
+	        if (this.getHost().className.indexOf('fa') >= 0) return;
+	    	this.addClasses();
+		},
+		attributeChanged: function(name, oldVal, newVal) {
+	    	if (!newVal || ['name', 'size', 'rotate', 'stack', 'flip', 'fw', 'spin', 'pulse', 'inverse', 'border'].indexOf(name) < 0) return;
+			this.addClasses();
+		},
+		addClasses: function() {
+	        var className = ' fa';
+	        var classes = this.getHost().className.split(' ');
+	        for (var i = 0; i < classes.length; i++) className += classes[i] == 'fa' || classes[i].trim().indexOf('fa-') == 0 ? '' : ' ' + classes[i];
+
+	        if (this.getHost().hasAttribute('name')) className += ' fa-' + this.getHost().getAttribute('name');
+	        if (this.getHost().hasAttribute('size')) className += ' fa-' + this.getHost().getAttribute('size') + 'x';
+	        if (this.getHost().hasAttribute('rotate')) className += ' fa-rotate-' + this.getHost().getAttribute('rotate');
+	        if (this.getHost().hasAttribute('stack')) className += ' fa-stack-' + this.getHost().getAttribute('stack') + 'x';
+	        if (this.getHost().hasAttribute('flip')) className += ' fa-flip-' + this.getHost().getAttribute('flip');
+	        if (this.getHost().hasAttribute('fw')) className += ' fa-fw';
+	        if (this.getHost().hasAttribute('spin')) className += ' fa-spin';
+	        if (this.getHost().hasAttribute('pulse')) className += ' fa-pulse';
+	        if (this.getHost().hasAttribute('inverse')) className += ' fa-inverse';
+	        if (this.getHost().hasAttribute('border')) className += ' fa-border';
+	        this.getHost().className = className.trim();
+	    }
+	});
+</script>
+<style>
+	razilo-tag { display: inline-block; padding: 6px 8px; background: #ddd; color: #222;}
+	razilo-tag[size='extra-small'] { padding: 2px 4px; font-size: 10px; line-height: 10px; }
+	razilo-tag[size='small'] { padding: 4px 6px; font-size: 12px; line-height: 12px; }
+	razilo-tag[size='medium'] { padding: 6px 8px; font-size: 14px; line-height: 16px; }
+	razilo-tag[size='large'] { padding: 8px 12px; font-size: 18px; line-height: 18px; }
+	razilo-tag[size='extra-large'] { padding: 10px 14px; font-size: 22px; line-height: 22px; }
+	razilo-tag[shape='round'] { border-radius: 100px; }
+	razilo-tag[shape='rounded'] { border-radius: 5px; }
+	razilo-tag[shape='oval'] { border-radius: 75% / 77%; }
+	razilo-tag[color='grey'] { background: #ddd; color: #222; }
+	razilo-tag[color='blue'] { background: rgb(74, 74, 255); color: #fff; }
+	razilo-tag[color='red'] { background: rgb(255, 44, 44); color: #fff; }
+	razilo-tag[color='green'] { background: rgb(18, 163, 18); color: #fff; }
+	razilo-tag[color='orange'] { background: rgb(255, 136, 26); color: #fff; }
+	razilo-tag[color='black'] { background: #222; color: #fff; }
+	razilo-tag[color='pink'] { background: #D729D5; color: #fff; }
+	razilo-tag[color='purple'] { background: #8913D4; color: #fff; }
+	razilo-tag[color='yellow'] { background: #E5E522; color: #444; }
+	razilo-tag[color='aqua'] { background: #31AEDB; color: #FFF; }
+	razilo-tag[color='white'] { background: #FFFFFF; color: #444; }
+</style>
+
+<!-- LOGIC -->
+<script>new RaziloComponent('razilo-tag')</script>
+<link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-choose { height: 30px; display: inline-block; }
+	razilo-choose .-items { height: 30px; width: 100%; display: block; margin-top: 2px; padding: 0px; }
+	razilo-choose .-items .-item { padding: 0px 3px; background-color: #ddd; color: #444; border: 2px solid #ddd; margin: 0px 2px 2px 0px; display: inline-block; }
+	razilo-choose .-items .-item razilo-icon { cursor: pointer; opacity: 0.8; }
+	razilo-choose .-items .-item razilo-icon:hover { opacity: 1; }
+	razilo-choose .-chooser { width: 100%; box-sizing: border-box; }
+	razilo-choose .-chooser select { height: 30px; width: inherit; padding: 2px 5px; border: 1px solid #888; outline: none; font-size: 15px; background: transparent; }
+	razilo-choose .-chooser select:focus:not([disabled]), razilo-choose .-chooser select:active:not([disabled]) { border: 1px solid #444; }
+	razilo-choose .-chooser select[disabled] { cursor: not-allowed; border: 1px dashed #888; background-color: #fff; }
+	razilo-choose .-chooser select option { color: #444; }
+	razilo-choose .-chooser select option.-placeholder { color: #aaa; }
+	razilo-choose .-chooser select { color: #444; }
+	razilo-choose .-chooser select[selected] { color: #444; }
+	razilo-choose .-chooser options { display: none }
+	razilo-choose[add] .-chooser { padding-right: 35px; position: relative; }
+	razilo-choose[add] .-chooser button { position: absolute; top: 0px; right: 0px; }
+	razilo-choose[disabled] .-items .-item { border: 1px dashed #ccc; background-color: #fff; }
+	razilo-choose[disabled] .-items .-item razilo-icon { cursor: not-allowed; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-choose">
+	<div class="-chooser">
+		<options>
+			<content></content>
+		</options>
+		<select bind-value="private.selected" bind-event="{'change': selectedOption()}">
+			<option bind-if="placeholder" bind-text="placeholder" class="-placeholder" value="" disabled=""></option>
+		</select>
+		<button bind-show="private.add" is="razilo-button" size="medium" shape="round" color="green" bind-event="{'click': selectedOption()}" icon="">
+			<razilo-icon name="plus"></razilo-icon>
+		</button>
+	</div>
+	<ul class="-items">
+		<li class="-item" bind-for="value">
+			<span bind-text="$value.label"></span>
+			<razilo-icon name="times" bind-event="{'click': removeItem($key)}"></razilo-icon>
+		</li>
+	</ul>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-choose', {
+		value: [],
+		placeholder: null,
+		add: false,
+
+		attached: function()
+		{
+			// lets check value type
+			this.parseOptions();
+			this.parseValue();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'placeholder':
+					this.placeholder = newVal;
+				break;
+				case 'disabled':
+					if (this.getHost().hasAttribute('disabled')) this.getHost().querySelector('select').setAttribute('disabled', '');
+					else this.getHost().querySelector('select').removeAttribute('disabled');
+				break;
+				case 'add':
+					if (this.getHost().hasAttribute('add')) this.private.add = 1;
+					else this.private.add = 0;
+				break;
+			}
+		},
+
+		parseOptions: function()
+		{
+			// push options into select, if any
+			var options = this.getHost().querySelector('options');
+			var select = this.getHost().querySelector('select');
+			while(options.firstChild) select.appendChild(options.firstChild);
+			options.parentNode.removeChild(options);
+			delete options;
+		},
+
+		parseValue: function()
+		{
+			// get values set
+			var values = this.getHost().value;
+			if (!values || typeof values !== 'object') return;
+
+			// parse values to options and set
+			var value = [];
+			var options;
+			for (var key in values) {
+				options = this.getHost().querySelectorAll("select option[value='" + values[key].value + "']");
+				if (!options.length < 1) option = this.getHost().querySelectorAll('select option');
+
+				for (var i = 0; i < options.length; i++) {
+					if (options[i].innerHTML == values[key].label)
+					{
+						value.push(values[key]);
+						break;
+					}
+				}
+			}
+			this.value = value;
+		},
+
+		selectedOption: function(ev)
+		{
+			// are we on auto, or have add button, or disabled
+			if (this.disabled || (ev.type === 'change' && this.add)) return;
+
+			// cache values into array
+			var value = [];
+			for (var key in this.value) value.push(this.value[key]);
+
+			// grab options
+			var options = ev.target.querySelectorAll("option[value='" + ev.target.value + "']");
+			if (!options.length < 1) options = this.getHost().querySelectorAll('option');
+
+			// add option to values
+			for (var i = 0; i < options.length; i++) {
+				if (ev.target.value == options[i].value || ev.target.value == options[i].innerHTML)
+				{
+					value.push({'value': options[i].value, 'label': options[i].innerHTML});
+					break;
+				}
+			}
+
+			this.getHost().value = this.value = value;
+			this.fireEvent('change');
+		},
+
+		removeItem: function(ev, key)
+		{
+			if (this.getHost().hasAttribute('disabled')) return;
+
+			var value = [];
+			for (var id in this.value)
+			{
+				if (id == key) continue;
+				value.push(this.value[id]);
+			}
+
+			this.getHost().value = this.value = value;
+			this.fireEvent('change');
+		}
+	});
+</script>
+<style>
+	button[is='razilo-button'] { opacity: 0.9; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); border: none; padding: 2px; background: #ddd; color: #222; cursor: pointer; }
+	button[is='razilo-button']:focus { opacity: 1; outline: none; }
+	button[is='razilo-button']:active:not(.disabled) { opacity: 0.9; box-shadow: none; }
+	button[is='razilo-button'][disabled], button[is='razilo-button'][disabled]:hover, button[is='razilo-button'][disabled]:focus { opacity: 0.4; cursor: not-allowed; }
+	button[is='razilo-button'][size='extra-small'] { padding: 0 4px; font-size: 9px; line-height: 14px; min-width: 18px; height: 18px; }
+	button[is='razilo-button'][size='small'] { padding: 0 8px; font-size: 11px; line-height: 18px; min-width: 22px; height: 22px; }
+	button[is='razilo-button'][size='medium'] { padding: 0 8px; font-size: 14px; line-height: 26px; min-width: 30px; height: 30px; }
+	button[is='razilo-button'][size='large'] { padding: 0 12px; font-size: 18px; line-height: 30px; min-width: 34px; height: 34px; }
+	button[is='razilo-button'][size='extra-large'] { padding: 0 14px; font-size: 20px; line-height: 34px; min-width: 38px; height: 38px; }
+	button[is='razilo-button'][size='extra-small'][icon] { padding: 0; }
+	button[is='razilo-button'][size='small'][icon] { padding: 0; }
+	button[is='razilo-button'][size='medium'][icon] { padding: 0; }
+	button[is='razilo-button'][size='large'][icon] { padding: 0; }
+	button[is='razilo-button'][size='extra-large'][icon] { padding: 0; }
+	button[is='razilo-button'][shape='round'] { -webkit-border-radius: 100px; -moz-border-radius: 100px; -ms-border-radius: 100px; -o-border-radius: 100px; border-radius: 100px; }
+	button[is='razilo-button'][shape='rounded'] { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
+	button[is='razilo-button'][shape='oval'] { -webkit-border-radius: 75% / 77%; -moz-border-radius: 75% / 77%; -ms-border-radius: 75% / 77%; -o-border-radius: 75% / 77%; border-radius: 75% / 77%; }
+	button[is='razilo-button'][color='grey'] { border: none; background: #ddd; color: #222; }
+	button[is='razilo-button'][color='blue'] { border: none; background: rgb(74, 74, 255); color: #fff; }
+	button[is='razilo-button'][color='red'] { border: none; background: rgb(255, 44, 44); color: #fff; }
+	button[is='razilo-button'][color='green'] { border: none; background: rgb(18, 163, 18); color: #fff; }
+	button[is='razilo-button'][color='orange'] { border: none; background: rgb(255, 136, 26); color: #fff; }
+	button[is='razilo-button'][color='black'] { border: none; background: #222; color: #fff; }
+	button[is='razilo-button'][color='pink'] { border: none; background: #D729D5; color: #fff; }
+	button[is='razilo-button'][color='purple'] { border: none; background: #8913D4; color: #fff; }
+	button[is='razilo-button'][color='yellow'] { border: none; background: #E5E522; color: #444; }
+	button[is='razilo-button'][color='aqua'] { border: none; background: #31AEDB; color: #FFF; }
+	button[is='razilo-button'][color='white'] { border: none; background: #FFFFFF; color: #444; }
+</style>
+
+<!-- LOGIC -->
+<script>new RaziloComponent('razilo-button', 'button')</script>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-insert { height: 30px; margin-bottom: 10px; display: inline-block; }
+	razilo-insert .-input-group { width: 100%; height: inherit; }
+	razilo-insert .-input-group input { width: inherit; height: inherit; box-sizing: border-box; padding: 2px 5px; border: 1px solid #888; outline: none; font-size: 15px; background: transparent; }
+	razilo-insert .-input-group input:focus:not([disabled]), razilo-insert .-input-group input:active:not([disabled]) { border-color: #444; }
+	razilo-insert .-input-group input[disabled] { cursor: not-allowed; border: 1px dashed #888; background-color: #fff; }
+	razilo-insert .-input-group input.error, razilo-insert .-input-group input.error:focus, razilo-insert .-input-group input.error:active { border-color: red; color: red; }
+	razilo-insert .-input-group .-input-error { position: absolute; color: red; font-size: 11px; line-height: 10px; }
+	razilo-insert .-input-group .-input-error razilo-icon, razilo-insert .-input-group .-input-error .-input-error-message { color: red; font-size: 11px; line-height: 10px}
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-insert">
+	<div class="-input-group">
+		<input bind-attributes="{'name': name, 'type': type, 'disabled': disabled, 'required': required, 'placeholder': placeholder}" bind-value="value" bind-event="{'input': onInputChanged(), 'keypress': onKeyPressed()}">
+		<div class="-input-error" bind-show="validateFail">
+			<razilo-icon name="warning"></razilo-icon>
+			<span class="-input-error-message" bind-text="validateMessage"></span>
+		</div>
+		<div class="-input-error" bind-show="matchFail">
+			<razilo-icon name="info"></razilo-icon>
+			<span class="-input-error-message" bind-text="matchMessage"></span>
+		</div>
+	</div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	// build scope
+	new RaziloComponent('razilo-insert', {
+		value: '',
+		error: false,
+		name: '',
+		type: '',
+		disabled: false,
+		placeholder: '',
+		required: false,
+		validate: '',
+		validateMessage: 'Fails validation',
+		validateFail: false,
+		match: '',
+		matchMessage: 'Does not match',
+		machFail: false,
+
+		attached: function()
+		{
+			// Initial setup
+			if (this.getHost().hasAttribute('name')) this.name = this.getHost().getAttribute('name');
+			if (this.getHost().hasAttribute('type')) this.type = this.getHost().getAttribute('type');
+			if (this.getHost().value || this.getHost().hasAttribute('value')) this.value = this.getHost().value || this.getHost().getAttribute('value');
+			if (this.getHost().hasAttribute('disabled')) this.disabled = true;
+			if (this.getHost().hasAttribute('placeholder')) this.placeholder = this.getHost().getAttribute('placeholder');
+			if (this.getHost().hasAttribute('required')) this.required = true;
+			if (this.getHost().hasAttribute('validate')) this.validate = this.getHost().getAttribute('validate');
+			if (this.getHost().hasAttribute('validate-message')) this.validateMessage = this.getHost().getAttribute('validate-message');
+			if (this.getHost().hasAttribute('match')) this.match = this.getHost().getAttribute('match');
+			if (this.getHost().hasAttribute('match-message')) this.matchMessage = this.getHost().getAttribute('match-message');
+
+			// force check on start if error set
+			if (this.getHost().hasAttribute('error')) this.checkError(this.value);
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'name':
+				case 'type':
+				case 'placeholder':
+				case 'validate':
+					this[name] = newVal;
+				break;
+				case 'value':
+					this.value = this.getHost().value || newVal;
+				break;
+				case 'disabled':
+				case 'required':
+				case 'match':
+					this[name] = true;
+				break;
+				case 'match-message':
+					this.matchMessage = newVal;
+				break;
+				case 'validate-message':
+					this.validateMessage = newVal;
+				break;
+				case 'error':
+					this.checkError(this.value);
+				break;
+			}
+		},
+
+		onInputChanged: function(ev)
+		{
+			this.checkError(this.value);
+			this.getHost().value = this.value; // have to push changes to host value too for data binders
+			this.fireEvent('change');
+		},
+
+		onKeyPressed: function(ev)
+		{
+			this.fireEvent('keypress', ev);
+		},
+
+		checkError: function(value)
+		{
+			this.error = false;
+			if (!this.validate && !this.match) return;
+
+			// validate input
+			var regexp = new RegExp(this.validate);
+			this.validateFail = !regexp.test(value);
+
+			if (this.validateFail)
+			{
+				this.error = true;
+				this.getHost().setAttribute('error', '');
+				this.fireEvent('error', this.validateMessage);
+				return;
+			}
+
+			// validate match
+			if (this.match != null && this.match != value)
+			{
+				this.validateMatch = true;
+				this.error = true;
+				this.getHost().setAttribute('error', '');
+				this.fireEvent('error', this.matchMessage);
+			}
+			else
+			{
+			 	this.getHost().removeAttribute('error');
+				this.validateMatch = false;
+			}
+		}
+	});
+</script>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-level razilo-icon { opacity: 0.8; cursor: pointer; }
+	razilo-level razilo-icon:hover { opacity: 1; cursor: pointer; }
+	razilo-level[disabled] razilo-icon, razilo-level[disabled] razilo-icon:hover { opacity: 0.5; cursor: not-allowed; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-level">
+	<razilo-icon bind-for="stars" bind-attributes="{'name': $value, 'size': size}" bind-event="{'click': updateStars($key)}" fw=""></razilo-icon>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-level', {
+		value: 0,
+		maximum: 5,
+		size: 2,
+		iconFilled: 'star',
+		iconEmpty: 'star-o',
+		disabled: false,
+		stars: null,
+
+		attached: function()
+		{
+			// Initial setup
+			if (this.getHost().hasAttribute('disabled')) this.disabled = true;
+			if (this.getHost().hasAttribute('value')) this.value = this.getHost().value || parseInt(this.getHost().getAttribute('value'));
+			if (this.getHost().hasAttribute('icon-filled')) this.iconFilled = this.getHost().getAttribute('icon-filled');
+			if (this.getHost().hasAttribute('icon-empty')) this.iconEmpty = this.getHost().getAttribute('icon-empty');
+			if (this.getHost().hasAttribute('size')) this.size = parseInt(this.getHost().getAttribute('size'));
+			if (this.getHost().hasAttribute('maximum')) this.maximum = parseInt(this.getHost().getAttribute('maximum'));
+			this.createStars();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'disabled') this.disabled = !newValue ? false: true;
+			if (name == 'icon-filled') this.iconFilled = newValue;
+			if (name == 'icon-empty') this.iconEmpty = newValue;
+			if (name == 'size') this.size = newValue;
+
+			if (name =='value')
+			{
+				this.value = this.getHost().value || newVal;
+				this.createStars();
+			}
+
+			if (name =='maximum')
+			{
+				this.maximum = parseInt(newVal);
+				this.createStars();
+			}
+		},
+
+		createStars: function()
+		{
+			var stars = [];
+			for (var i = 0; i < this.maximum; i++) stars.push(i < this.value ? this.iconFilled : this.iconEmpty);
+			this.stars = stars;
+		},
+
+		updateStars: function(ev, idx)
+		{
+			if (this.disabled) return;
+			this.getHost().value = parseInt(idx) + 1;
+			this.fireEvent('change');
+		}
+	});
+</script>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-switch[disabled] razilo-icon { opacity: 0.5; cursor: not-allowed; }
+	razilo-switch razilo-icon.fa-toggle-on, razilo-switch razilo-icon.fa-toggle-off { font-size: 30px; line-height: 30px; cursor: pointer; }
+	razilo-switch razilo-icon[name='toggle-on'] { color: green; }
+	razilo-switch[on-color='red'] razilo-icon[name='toggle-on'] { color: red; }
+	razilo-switch[on-color='blue'] razilo-icon[name='toggle-on'] { color: blue; }
+	razilo-switch[on-color='orange'] razilo-icon[name='toggle-on'] { color: orange; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-switch">
+	<razilo-icon bind-attributes="{'name': icon}" bind-event="{'click': toggle()}"></razilo-icon>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-switch', {
+		value: 0,
+		icon: 'toggle-off',
+		disabled: false,
+
+		attached: function()
+		{
+			this.disabled = this.getHost().hasAttribute('disabled') ? true : false;
+			this.value = this.getHost().getAttribute('value') == 1 ? 1 : 0;
+			this.icon = this.value == 0 ? 'toggle-off' : 'toggle-on';
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'disabled') this.disabled = !newValue ? false: true;
+			if (name == 'value' && newVal != this.value) this.toggle();
+		},
+
+		toggle: function(ev)
+		{
+			if (this.disabled) return;
+
+			this.value = this.value == 0 ? 1 : 0;
+			this.icon = this.value == 0 ? 'toggle-off' : 'toggle-on';
+
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		}
+	});
+</script>
+<style>
+	select[is="razilo-select"] { height: 30px; padding: 2px 5px; border: 1px solid #888; outline: none; font-size: 15px; background: transparent; }
+	select[is="razilo-select"]:focus:not([disabled]), select[is="razilo-select"]:active:not([disabled]) { border: 1px solid #444; }
+	select[is="razilo-select"][disabled] { cursor: not-allowed; border: 1px dashed #888; background-color: #fff; }
+</style>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-paginate .-holder { text-align: center; }
+	razilo-paginate .-holder razilo-tag { min-width: 100px; }
+	razilo-paginate .-holder razilo-tag input { border: 1px solid #888; text-align: right; width: 60px; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-paginate">
+	<div class="-holder">
+		<button is="razilo-button" shape="round" color="grey" size="medium" bind-event="{'click': beginning()}" icon=""><razilo-icon name="angle-double-left"></razilo-icon></button>
+		<button is="razilo-button" shape="round" color="grey" size="medium" bind-event="{'click': pageLeft()}" icon=""><razilo-icon name="angle-left"></razilo-icon></button>
+		<razilo-tag shape="round" color="grey">
+			Page <input type="text" bind-value="value" bind-event="{'change': goTo()}">
+			of <span bind-text="pages"></span>
+		</razilo-tag>
+		<button is="razilo-button" shape="round" color="grey" size="medium" bind-event="{'click': pageRight()}" icon=""><razilo-icon name="angle-right"></razilo-icon></button>
+		<button is="razilo-button" shape="round" color="grey" size="medium" bind-event="{'click': end()}" icon=""><razilo-icon name="angle-double-right"></razilo-icon></button>
+	</div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-paginate', {
+		value: 1,
+		pages: 1,
+
+		attached: function()
+		{
+			this.value = this.getHost().hasAttribute('value') ? parseInt(this.getHost().getAttribute('value')) : 1;
+			this.pages = this.getHost().hasAttribute('pages') ? parseInt(this.getHost().getAttribute('pages')) : 1;
+
+			this.resolveValues();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'value' && this.value != newVal) this.value = parseInt(newVal);
+			if (name == 'pages') this.pages = parseInt(newVal);
+
+			this.resolveValues();
+		},
+
+		resolveValues: function()
+		{
+			if (this.pages < 1) this.pages = 1;
+			if (this.value < 1) this.value = 1;
+			if (this.value > this.pages) this.value = this.pages
+		},
+
+		pageLeft: function()
+		{
+			if (this.value <= 1) return;
+
+			this.value--;
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		},
+
+		pageRight: function()
+		{
+			if (this.value >= this.pages) return;
+
+			this.value++;
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		},
+
+		beginning: function()
+		{
+			this.getHost().value = 1;
+			this.fireEvent('change');
+		},
+
+		end: function()
+		{
+			this.getHost().value = this.pages;
+			this.fireEvent('change');
+		},
+
+		goTo: function()
+		{
+			if (isNaN(this.value)) this.value = parseInt(this.getHost().value);
+			else if (this.value < 1) this.value = 1;
+			else if (this.value > this.pages) this.value = this.pages;
+
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		}
+	});
+</script>
+<script>
+	new RaziloComponent('razilo-error', {
+		value: 0,
+		matches: [],
+
+		attached: function()
+		{
+			this.addMatches();
+		},
+
+		detached: function()
+		{
+			this.removeMatches();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'value' && this.value != newVal) this.value = parseInt(newVal);
+
+			if (name == 'refresh' && newVal != oldVal)
+			{
+				this.removeMatches();
+				this.addMatches();
+			}
+		},
+
+		addMatches: function()
+		{
+			this.matches = this.getHost().querySelectorAll('input, razilo-insert, select, razilo-choose, textarea, razilo-date-picker, razilo-time-picker');
+			for (var i = 0; i < this.matches.length; i++) this.matches[i].addEventListener('change', this.checkError.bind(this));
+		},
+
+		removeMatches: function()
+		{
+			for (var i = 0; i < this.matches.length; i++) this.matches[i].removeEventListener('change', this.checkError.bind(this));
+		},
+
+		checkError: function(event)
+		{
+			var error = false;
+			for (var i = 0; i < this.matches.length; i++)
+			{
+				if (this.matches[i].hasAttribute('disabled')) continue;
+
+				var val = this.matches[i].value;
+				var err = this.matches[i].error || this.matches[i].hasAttribute('error');
+				if ((this.matches[i].hasAttribute('required') && !val) || err) error = true;
+			}
+
+			this.value = parseInt(error);
+			this.getHost().value = this.value;
+
+			this.fireEvent('change');
+		}
+	});
+</script>
+<style>
+	razilo-message { padding: 20px; position: fixed; opacity: 0; display: none; width: 100%; left: 0px; top: 15%; text-align: center; z-index: 3010; }
+	razilo-message .-spacer { padding: 10px; text-align: center; background-color: #f4f4f4; color: #444; font-size: 14px; box-shadow: 0px 0px 30px 0px rgba(40, 40, 40, 0.61); }
+	@media (min-width: 500px) { razilo-message { width: 60%; left: 20%; } }
+	@media (min-width: 800px) { razilo-message { width: 50%; left: 25%; } }
+	@media (min-width: 1200px) { razilo-message { width: 40%; left: 30%; } }
+
+	razilo-message[animate-a] { display: block; -webkit-animation-name: -razilo-message-show-a; -webkit-animation-duration: 4s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: linear; -webkit-animation-fill-mode: forwards; -moz-animation-name: -razilo-message-show-a; -moz-animation-duration: 4s; -moz-animation-iteration-count: 1; -moz-animation-timing-function: linear; -ms-animation-name: -razilo-message-show-a; -ms-animation-duration: 4s; -ms-animation-iteration-count: 1; -ms-animation-timing-function: linear; -o-animation-name: -razilo-message-show-a; -o-animation-duration: 4s; -o-animation-iteration-count: 1; -o-animation-timing-function: linear; animation-name: -razilo-message-show-a; animation-duration: 4s; animation-iteration-count: 1; animation-timing-function: linear; }
+	razilo-message[animate-b] { display: block; -webkit-animation-name: -razilo-message-show-b; -webkit-animation-duration: 4s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: linear; -webkit-animation-fill-mode: forwards; -moz-animation-name: -razilo-message-show-b; -moz-animation-duration: 4s; -moz-animation-iteration-count: 1; -moz-animation-timing-function: linear; -ms-animation-name: -razilo-message-show-b; -ms-animation-duration: 4s; -ms-animation-iteration-count: 1; -ms-animation-timing-function: linear; -o-animation-name: -razilo-message-show-b; -o-animation-duration: 4s; -o-animation-iteration-count: 1; -o-animation-timing-function: linear; animation-name: -razilo-message-show-b; animation-duration: 4s; animation-iteration-count: 1; animation-timing-function: linear; }
+	razilo-message[delay="double"] { -webkit-animation-duration: 8s; -moz-animation-duration: 8s; -ms-animation-duration: 8s; -o-animation-duration: 8s; animation-duration: 8s; }
+	razilo-message[delay="triple"] { -webkit-animation-duration: 12s; -moz-animation-duration: 12s; -ms-animation-duration: 12s; -o-animation-duration: 12s; animation-duration: 12s; }
+	@-webkit-keyframes -razilo-message-show-a { 0% { opacity: 1; } 1% { -webkit-transform: translate(2px, 1px) rotate(0deg); } 2% { -webkit-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -webkit-transform: translate(-3px, 0px) rotate(3deg); } 4% { -webkit-transform: translate(0px, 2px) rotate(0deg); } 5% { -webkit-transform: translate(1px, -1px) rotate(3deg); } 6% { -webkit-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -webkit-transform: translate(-3px, 1px) rotate(0deg); } 8% { -webkit-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; }	}
+	@-webkit-keyframes -razilo-message-show-b {	0% { opacity: 1; } 1% { -webkit-transform: translate(2px, 1px) rotate(0deg); } 2% { -webkit-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -webkit-transform: translate(-3px, 0px) rotate(3deg); } 4% { -webkit-transform: translate(0px, 2px) rotate(0deg); } 5% { -webkit-transform: translate(1px, -1px) rotate(3deg); } 6% { -webkit-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -webkit-transform: translate(-3px, 1px) rotate(0deg); } 8% { -webkit-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; } }
+	@-moz-keyframes -razilo-message-show-a { 0% { opacity: 1; } 1% { -moz-transform: translate(2px, 1px) rotate(0deg); } 2% { -moz-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -moz-transform: translate(-3px, 0px) rotate(3deg); } 4% { -moz-transform: translate(0px, 2px) rotate(0deg); } 5% { -moz-transform: translate(1px, -1px) rotate(3deg); } 6% { -moz-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -moz-transform: translate(-3px, 1px) rotate(0deg); } 8% { -moz-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; }	}
+	@-moz-keyframes -razilo-message-show-b { 0% { opacity: 1; } 1% { -moz-transform: translate(2px, 1px) rotate(0deg); } 2% { -moz-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -moz-transform: translate(-3px, 0px) rotate(3deg); } 4% { -moz-transform: translate(0px, 2px) rotate(0deg); } 5% { -moz-transform: translate(1px, -1px) rotate(3deg); } 6% { -moz-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -moz-transform: translate(-3px, 1px) rotate(0deg); } 8% { -moz-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; } }
+	@-ms-keyframes -razilo-message-show-a { 0% { opacity: 1; } 1% { -ms-transform: translate(2px, 1px) rotate(0deg); } 2% { -ms-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -ms-transform: translate(-3px, 0px) rotate(3deg); } 4% { -ms-transform: translate(0px, 2px) rotate(0deg); } 5% { -ms-transform: translate(1px, -1px) rotate(3deg); } 6% { -ms-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -ms-transform: translate(-3px, 1px) rotate(0deg); } 8% { -ms-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; }	}
+	@-ms-keyframes -razilo-message-show-b {	0% { opacity: 1; } 1% { -ms-transform: translate(2px, 1px) rotate(0deg); } 2% { -ms-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -ms-transform: translate(-3px, 0px) rotate(3deg); } 4% { -ms-transform: translate(0px, 2px) rotate(0deg); } 5% { -ms-transform: translate(1px, -1px) rotate(3deg); } 6% { -ms-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -ms-transform: translate(-3px, 1px) rotate(0deg); } 8% { -ms-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; } }
+	@-o-keyframes -razilo-message-show-a { 0% { opacity: 1; } 1% { -o-transform: translate(2px, 1px) rotate(0deg); } 2% { -o-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -o-transform: translate(-3px, 0px) rotate(3deg); } 4% { -o-transform: translate(0px, 2px) rotate(0deg); } 5% { -o-transform: translate(1px, -1px) rotate(3deg); } 6% { -o-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -o-transform: translate(-3px, 1px) rotate(0deg); } 8% { -o-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; }	}
+	@-o-keyframes -razilo-message-show-b {	0% { opacity: 1; } 1% { -o-transform: translate(2px, 1px) rotate(0deg); } 2% { -o-transform: translate(-1px, -2px) rotate(-3deg); } 3% { -o-transform: translate(-3px, 0px) rotate(3deg); } 4% { -o-transform: translate(0px, 2px) rotate(0deg); } 5% { -o-transform: translate(1px, -1px) rotate(3deg); } 6% { -o-transform: translate(-1px, 2px) rotate(-3deg); } 7% { -o-transform: translate(-3px, 1px) rotate(0deg); } 8% { -o-transform: none; } 95% { opacity: 1; } 100% { opacity: 0; } }
+	@keyframes -razilo-message-show-a { 0% { opacity: 1; } 1% { transform: translate(2px, 1px) rotate(0deg); } 2% { transform: translate(-1px, -2px) rotate(-3deg); } 3% { transform: translate(-3px, 0px) rotate(3deg); } 4% { transform: translate(0px, 2px) rotate(0deg); } 5% { transform: translate(1px, -1px) rotate(3deg); } 6% { transform: translate(-1px, 2px) rotate(-3deg); } 7% { transform: translate(-3px, 1px) rotate(0deg); } 8% { transform: none; } 95% { opacity: 1; } 100% { opacity: 0; }	}
+	@keyframes -razilo-message-show-b {	0% { opacity: 1; } 1% { transform: translate(2px, 1px) rotate(0deg); } 2% { transform: translate(-1px, -2px) rotate(-3deg); } 3% { transform: translate(-3px, 0px) rotate(3deg); } 4% { transform: translate(0px, 2px) rotate(0deg); } 5% { transform: translate(1px, -1px) rotate(3deg); } 6% { transform: translate(-1px, 2px) rotate(-3deg); } 7% { transform: translate(-3px, 1px) rotate(0deg); } 8% { transform: none; } 95% { opacity: 1; } 100% { opacity: 0; } }
+
+	razilo-message[position='top'] { top: 0px; bottom: initial; text-align: center; }
+	razilo-message[position='bottom'] { top: initial; bottom: 0px; text-align: center; }
+	razilo-message[position='top-left'] { width: auto; max-width: 50%; top: 0px; bottom: initial; left: 0px; right: initial; text-align: left; }
+	razilo-message[position='top-right'] { width: auto; max-width: 50%; top: 0px; bottom: initial; left: initial; right: 0px; text-align: right; }
+	razilo-message[position='bottom-left'] { top: initial; width: auto; max-width: 50%; top: initial; bottom: 0px; left: 0px; right: initial; text-align: left; }
+	razilo-message[position='bottom-right'] { top: initial; width: auto; max-width: 50%; top: initial; bottom: 0px; left: initial; right: 0px; text-align: right; }
+	razilo-message[color='red'] .-spacer { background-color: rgb(255, 44, 44); color: #fff; }
+	razilo-message[color='blue'] .-spacer { background-color: rgb(74, 74, 255); color: #fff; }
+	razilo-message[color='green'] .-spacer { background-color: rgb(18, 163, 18); color: #fff; }
+	razilo-message[color='orange'] .-spacer { background-color: rgb(255, 136, 26); color: #fff; }
+	razilo-message[color='black'] .-spacer { background-color: #444; color: #fff; }
+	razilo-message[shape='round'] .-spacer { border-radius: 100px; }
+	razilo-message[shape='rounded'] .-spacer { border-radius: 5px; }
+	razilo-message[shape='oval'] .-spacer { border-radius: 75% / 77%; }
+	razilo-message[persist] { display: block; opacity: 1; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-message">
+	<div class="-spacer">
+		<content></content>
+	</div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-message', {
+		timer: null,
+		delay: 4100,
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'show' && newVal !== null) {
+				this.fireEvent('show');
+
+				if (this.getHost().hasAttribute('animate-a')) {
+					this.getHost().removeAttribute('animate-a');
+					this.getHost().setAttribute('animate-b', '');
+				} else {
+					this.getHost().removeAttribute('animate-b');
+					this.getHost().setAttribute('animate-a', '');
+				}
+
+				this.getHost().removeAttribute('persist');
+				this.getHost().removeAttribute('show');
+				this.setTimer();
+			}
+
+			if (name == 'delay') this.setDelay(newVal);
+		},
+
+		show: function() {
+			this.getHost().setAttribute('show', '');
+		},
+
+		setTimer: function() {
+			clearTimeout(this.timer);
+			var scope = this;
+			this.timer = setTimeout(function() {
+				scope.fireEvent('hide');
+				scope.getHost().removeAttribute('animate-a');
+				scope.getHost().removeAttribute('animate-b');
+			}, this.delay);
+		},
+
+		setDelay: function(val) {
+			this.delay = val == 'triple' ? 12100 : val == 'double' ? 8100 : 4100;
+		}
+	});
+</script>
+<style>
+	razilo-modal { padding: 20px; position: fixed; opacity: 0; display: none; width: 100%; left: 0px; top: 50%; z-index: 3000; }
+	razilo-modal .-spacer { padding: 10px; background-color: #f4f4f4; color: #444; font-size: 14px; box-shadow: 0px 0px 30px 0px rgba(40, 40, 40, 0.61); }
+	@media (min-width: 500px) { razilo-modal { width: 70%; left: 15%; } razilo-modal[size='small'] { width: 50%; left: 25%; } razilo-modal[size='large'] { width: 90%; left: 5%; } }
+	@media (min-width: 800px) { razilo-modal { width: 60%; left: 20%; } razilo-modal[size='small'] { width: 40%; left: 30%; } razilo-modal[size='large'] { width: 80%; left: 10%; } }
+	@media (min-width: 1200px) { razilo-modal { width: 50%; left: 25%; } razilo-modal[size='small'] { width: 30%; left: 35%; } razilo-modal[size='large'] { width: 70%; left: 15%; } }
+	razilo-modal[animate-show] { display: block; -webkit-animation-name: -razilo-modal-show; -webkit-animation-duration: 0.25s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: linear; -webkit-animation-fill-mode: forwards; -moz-animation-name: -razilo-modal-show; -moz-animation-duration: 0.25s; -moz-animation-iteration-count: 1; -moz-animation-timing-function: linear; -moz-animation-fill-mode: forwards; -ms-animation-name: -razilo-modal-show; -ms-animation-duration: 0.25s; -ms-animation-iteration-count: 1; -ms-animation-timing-function: linear; -ms-animation-fill-mode: forwards; -o-animation-name: -razilo-modal-show; -o-animation-duration: 0.25s; -o-animation-iteration-count: 1; -o-animation-timing-function: linear; -o-animation-fill-mode: forwards; animation-name: -razilo-modal-show; animation-duration: 0.25s; animation-iteration-count: 1; animation-timing-function: linear; animation-fill-mode: forwards; }
+	razilo-modal[animate-hide] { display: block; -webkit-animation-name: -razilo-modal-hide; -webkit-animation-duration: 0.25s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: linear; -webkit-animation-fill-mode: forwards; -moz-animation-name: -razilo-modal-hide; -moz-animation-duration: 0.25s; -moz-animation-iteration-count: 1; -moz-animation-timing-function: linear; -moz-animation-fill-mode: forwards; -ms-animation-name: -razilo-modal-hide; -ms-animation-duration: 0.25s; -ms-animation-iteration-count: 1; -ms-animation-timing-function: linear; -ms-animation-fill-mode: forwards; -o-animation-name: -razilo-modal-hide; -o-animation-duration: 0.25s; -o-animation-iteration-count: 1; -o-animation-timing-function: linear; -o-animation-fill-mode: forwards; animation-name: -razilo-modal-hide; animation-duration: 0.25s; animation-iteration-count: 1; animation-timing-function: linear; animation-fill-mode: forwards; }
+	@-webkit-keyframes -razilo-modal-show { 0% { opacity: 0; } 100% { opacity: 1; } }
+	@-webkit-keyframes -razilo-modal-hide { 0% { opacity: 1; } 100% { opacity: 0; } }
+	@-moz-keyframes -razilo-modal-show { 0% { opacity: 0; } 100% { opacity: 1; } }
+	@-moz-keyframes -razilo-modal-hide { 0% { opacity: 1; } 100% { opacity: 0; } }
+	@-ms-keyframes -razilo-modal-show { 0% { opacity: 0; } 100% { opacity: 1; } }
+	@-ms-keyframes -razilo-modal-hide { 0% { opacity: 1; } 100% { opacity: 0; } }
+	@-o-keyframes -razilo-modal-show { 0% { opacity: 0; } 100% { opacity: 1; } }
+	@-o-keyframes -razilo-modal-hide { 0% { opacity: 1; } 100% { opacity: 0; } }
+	@keyframes -razilo-modal-show { 0% { opacity: 0; } 100% { opacity: 1; } }
+	@keyframes -razilo-modal-hide { 0% { opacity: 1; } 100% { opacity: 0; } }
+	razilo-modal .-heading { padding: 10px; min-height: 30px; }
+	razilo-modal .-heading heading { padding: 0px 40px 0px 0px; font-size: 20px; line-height: 20px; font-weight: bold; }
+	razilo-modal .-heading .-close { cursor: pointer; font-size: 24px; line-height: 30px; position: absolute; top: 24px; right: 24px; }
+	razilo-modal .-heading .-close:hover { opacity: 0.8; }
+	razilo-modal main { display: block; padding: 10px; overflow: auto; box-sizing: border-box; width: 100%; max-height: 500px; }
+	razilo-modal footer { display: block; padding: 10px 0 0 0; text-align: right; }
+	razilo-modal[color='red'] .-spacer { background-color: rgb(255, 44, 44); color: #fff; }
+	razilo-modal[color='blue'] .-spacer { background-color: rgb(74, 74, 255); color: #fff; }
+	razilo-modal[color='green'] .-spacer { background-color: rgb(18, 163, 18); color: #fff; }
+	razilo-modal[color='orange'] .-spacer { background-color: rgb(255, 136, 26); color: #fff; }
+	razilo-modal[color='black'] .-spacer { background-color: #444; color: #fff; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-modal">
+	<div class="-spacer">
+		<div class="-heading" bind-if="heading">
+			<content select="heading"></content>
+			<razilo-icon class="-close" name="times" bind-event="{'click': hide()}" fw=""></razilo-icon>
+		</div>
+		<content select="main"></content>
+		<content select="footer"></content>
+	</div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-modal', {
+		heading: true,
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (name == 'show')
+			{
+				if (newVal !== null)
+				{
+					this.fireEvent('show');
+					if (this.getHost().querySelector('content[select="heading"]')) this.heading = false;
+					window.addEventListener('resize', this.resize.bind(this));
+					this.getHost().setAttribute('animate-show', '');
+					this.getHost().removeAttribute('animate-hide');
+					setTimeout(this.resize.bind(this), 10);
+				}
+				else
+				{
+					this.getHost().setAttribute('animate-hide', '');
+					this.getHost().removeAttribute('animate-show');
+					this.setTimer();
+				}
+			}
+		},
+
+		show: function() {
+			this.getHost().setAttribute('show', '');
+		},
+
+		hide: function() {
+			this.getHost().removeAttribute('show');
+		},
+
+		setTimer: function() {
+			var scope = this;
+			setTimeout(function() {
+				scope.fireEvent('hide');
+				window.removeEventListener('resize', this.resize);
+				scope.getHost().removeAttribute('animate-show');
+				scope.getHost().removeAttribute('animate-hide');
+			}, 300);
+		},
+
+		resize: function()
+		{
+			var main = this.getHost().querySelector('main');
+			if (main) main.style.maxHeight = ((window.innerHeight + main.offsetHeight - this.getHost().offsetHeight) / 100) * 90 + 'px';
+
+			var marginTop = (this.getHost().offsetHeight - (this.getHost().offsetHeight * 2)) / 2;
+			this.getHost().style.marginTop = marginTop + 'px';
+		}
+	});
+</script>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-date-picker razilo-modal { width: 380px; left: 50%; margin-left: -190px; }
+	razilo-date-picker razilo-modal .-container .-controls { display: block; width: 100%; text-align: center; overflow: hidden; margin-bottom: 8px; padding-bottom: 2px; }
+	razilo-date-picker razilo-modal .-container .-controls .-tag-box { width: 130px; display: inline-block; }
+	razilo-date-picker razilo-modal .-container .-controls .-clear { position: absolute; left: 40px; }
+	razilo-date-picker razilo-modal .-container .-controls .-close { position: absolute; right: 40px; }
+	razilo-date-picker razilo-modal .-container .-controls .-close:hover, razilo-date-picker razilo-modal .-container .-controls .-clear:hover  { opacity: 1; }
+	razilo-date-picker razilo-modal .-container .-frame { position: relative; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker { width: 100%; display: block; margin: 0; padding: 0; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day { width: 14.28%; display: inline-block; cursor: pointer; box-sizing: border-box; list-style-type: none; padding: 1px;	}
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day .-details { width: 100%; text-align: center; box-sizing: border-box; color: #444; background-color: #f4f4f4; border: solid 1px #ddd; padding: 8px 6px 6px 6px; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day[today] .-details { font-weight: bolder; background-color: #ddd; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day:hover .-details, razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day[selected] .-details { background-color: #c8dbff; border: solid 1px #8db4fb; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day[disabled] .-details { opacity: 0.5; cursor: not-allowed; background: #fff; border: solid 1px #ddd; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day .-details .-date { font-size: 14px; line-height: 12px; display: block; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-day .-details .-day { font-size: 10px; padding-top: 0px; display: block; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-year { width: 20%; display: inline-block; cursor: pointer; box-sizing: border-box; list-style-type: none; padding: 1px;	}
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-year .-details { width: 100%; text-align: center; box-sizing: border-box; background-color: #f4f4f4; border: solid 1px #ddd; padding: 10px 6px 10px 6px; }
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-month { width: 25%; display: inline-block; cursor: pointer; box-sizing: border-box; list-style-type: none; padding: 1px;	}
+	razilo-date-picker razilo-modal .-container .-frame .-picker .-picker-month .-details { width: 100%; text-align: center; box-sizing: border-box; background-color: #f4f4f4; border: solid 1px #ddd; padding: 22px 6px 22px 6px; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-date-picker">
+	<razilo-modal bind-attributes="{'show': showModal, 'color': color}">
+		<main>
+			<div class="-container">
+		        <div class="-controls">
+					<button is="razilo-button" class="-clear" shape="round" color="orange" size="medium" bind-event="{'click': clear()}" icon=""><razilo-icon name="eraser"></razilo-icon></button>
+					<button is="razilo-button" size="medium" shape="round" color="grey" bind-event="{'click': previous()}" icon=""><razilo-icon name="chevron-left"></razilo-icon></button>
+					<div class="-tag-box">
+						<button class="-in-month" is="razilo-button" size="medium" shape="round" color="grey" bind-event="{'click': changeMode()}">
+							<span bind-text="date" alter-text="{'date': 'mmmm yyyy'}"></span>
+						</button>
+					</div>
+					<button is="razilo-button" size="medium" shape="round" color="grey" bind-event="{'click': next()}" icon=""><razilo-icon name="chevron-right"></razilo-icon></button>
+					<button is="razilo-button" class="-close" shape="round" color="red" size="medium" bind-event="{'click': hide()}" icon=""><razilo-icon name="times"></razilo-icon></button>
+		        </div>
+				<div class="-frame">
+			        <ul class="-picker" bind-show="mode" alter-show="{'equal': 'day'}">
+				        <li bind-for="days" bind-event="{'click': selectDay($value)}" bind-attributes="{'selected': $value.selected, 'today': $value.today, 'disabled': $value.disabled}" class="-picker-day">
+							<div class="-details">
+								<span class="-day" bind-text="$value.date" alter-text="{'date': 'ddd'}"></span>
+								<span class="-date" bind-text="$value.date" alter-text="{'date': 'dd'}"></span>
+							</div>
+						</li>
+			        </ul>
+			        <ul class="-picker" bind-show="mode" alter-show="{'equal': 'year'}">
+				        <li bind-for="years" bind-event="{'click': selectYear()}" class="-picker-year" bind-attributes="{'index': $key}">
+							<div class="-details">
+								<span class="-year" bind-text="$value"></span>
+							</div>
+						</li>
+			        </ul>
+			        <ul class="-picker" bind-show="mode" alter-show="{'equal': 'month'}">
+				        <li bind-for="months" bind-event="{'click': selectMonth()}" class="-picker-month" bind-attributes="{'index': $key}">
+							<div class="-details">
+								<span class="-month" bind-text="$value"></span>
+							</div>
+						</li>
+			        </ul>
+				</div>
+			</div>
+		</main>
+	</razilo-modal>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-date-picker', {
+		showModal: false,
+		color: 'white',
+		mode: 'day',
+
+		value: new Date(),
+		today: new Date(),
+		date: new Date(),
+
+		days: [],
+		years: [],
+		months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+		attached: function ()
+		{
+			this.color = this.getHost().getAttribute('color') || this.color;
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'value':
+					var val = this.getHost().value;
+
+					if (val instanceof Date) this.value = val;
+					else if (!isNaN(newVal)) this.value = new Date(val);
+					else this.value = typeof val === 'string' ? new Date(Date.parse(val)) : new Date();
+				break;
+				case 'format':
+					this.format = newVal || 'yyyy-mm-dd';
+				break;
+				case 'color':
+					this.color = newVal;
+				break;
+				case 'show':
+					if (newVal === null) this.showModal = false;
+					else
+					{
+						this.showModal = true;
+						this.mode = 'day';
+						this.load();
+					}
+				break;
+			}
+		},
+
+		show: function()
+		{
+			this.getHost().setAttribute('show', '');
+		},
+
+		hide: function()
+		{
+			this.getHost().removeAttribute('show');
+		},
+
+		clear: function()
+		{
+			this.getHost().removeAttribute('show');
+			this.getHost().value = null;
+			this.fireEvent('change');
+		},
+
+		// Clears the calendar and shows the next month
+		next: function()
+		{
+			if (this.mode == 'day')
+			{
+				this.date.setMonth(this.date.getMonth() + 1);
+				this.date = new Date(this.date);
+				this.createMonth();
+			}
+			else if (this.mode == 'year')
+			{
+				var start = parseInt(this.years[24]) + 1;
+				this.years = [];
+				for (var i = start; i < start + 25; i++) this.years.push(i);
+			}
+
+			this.fireEvent('next' + this.mode);
+		},
+
+		// Clears the calendar and shows the previous month
+		previous: function()
+		{
+			if (this.mode == 'day')
+			{
+				this.date.setMonth(this.date.getMonth() - 1);
+				this.date = new Date(this.date);
+				this.createMonth();
+			}
+			else if (this.mode == 'year')
+			{
+				var start = parseInt(this.years[0]) - 25;
+				this.years = [];
+				for (var i = start; i < start + 25; i++) this.years.push(i);
+			}
+
+			this.fireEvent('previous' + this.mode);
+		},
+
+		load: function()
+		{
+			this.today = new Date();
+
+			// work out start point for calendar
+			var date = new Date();
+			date.setDate(1);
+			date.setMonth(this.value.getMonth());
+			date.setFullYear(this.value.getFullYear());
+			this.date = new Date(date);
+
+			// create months for calendar
+			this.createMonth();
+		},
+
+		// Creates and populates all of the days to make up the month
+		createMonth: function()
+		{
+			// chache current place
+			var cache = {day: this.date.getDate(), month: this.date.getMonth(), year: this.date.getFullYear()};
+
+			// always cash intensive arrays before setting to bound properties
+			var days = [];
+			while (this.date.getDay() != 1) this.date.setDate(this.date.getDate() - 1);
+
+			// do the first monday to get past loop
+			days.push({
+				'id': days.length,
+				'date': new Date(this.date),
+				'today': this.internalFormat(this.date) == this.internalFormat(this.today),
+				'selected': !!this.getHost().value && this.internalFormat(this.date) == this.internalFormat(this.value),
+				'disabled': this.date.getMonth() != cache.month
+			});
+			this.date.setDate(this.date.getDate() + 1);
+
+			// now loop until we hit the next monday that is not in the month we selected
+			while (!(this.date.getDay() == 1 && this.date.getMonth() != cache.month))
+			{
+				days.push({
+					'id': days.length,
+					'date': new Date(this.date),
+					'today': this.internalFormat(this.date) == this.internalFormat(this.today),
+					'selected': !!this.getHost().value && this.internalFormat(this.date) == this.internalFormat(this.value),
+					'disabled': this.date.getMonth() != cache.month
+				});
+				this.date.setDate(this.date.getDate() + 1);
+			}
+			this.days = days;
+
+			// reset the date object
+			this.date.setDate(cache.day);
+			this.date.setMonth(cache.month);
+			this.date.setFullYear(cache.year);
+		},
+
+		selectDay: function(ev, day)
+		{
+			if (day.disabled) return;
+			this.selected = new Date(this.days[day.id].date);
+			this.selectedDate = this.dateFormat(this.selected, 'yyyy-mm-dd');
+			this.getHost().value = new Date(this.days[day.id].date);
+			this.getHost().removeAttribute('show');
+			this.fireEvent('change');
+		},
+
+		selectYear: function(ev)
+		{
+			var el = ev.target;
+			while (!el.hasAttribute('index')) el = el.parentNode;
+			var index = el.getAttribute('index');
+
+			var dateObject = new Date();
+		    dateObject.setDate(this.date.getDate());
+		    dateObject.setMonth(this.date.getMonth());
+		    dateObject.setYear(this.years[index]);
+
+			this.date = dateObject
+			this.mode = 'month';
+		},
+
+		selectMonth: function(ev)
+		{
+			var el = ev.target;
+			while (!el.hasAttribute('index')) el = el.parentNode;
+			var index = el.getAttribute('index');
+
+			var dateObject = new Date();
+		    dateObject.setDate(this.date.getDate());
+		    dateObject.setMonth(index);
+		    dateObject.setYear(this.date.getFullYear());
+
+			this.date = dateObject
+			this.createMonth();
+			this.mode = 'day';
+		},
+
+		changeMode: function()
+		{
+			if (this.mode != 'day') this.mode = 'day';
+			else
+			{
+				var years = [];
+				var start = parseInt(this.date.getFullYear()) - 12;
+				for (var i = start; i < start + 25; i++) years.push(i);
+
+				this.years = years;
+				this.mode = 'year';
+			}
+		},
+
+		internalFormat: function(date)
+		{
+			return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+		}
+	});
+</script>
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	razilo-time-picker razilo-modal { width: 340px; left: 50%; margin-left: -170px; }
+	razilo-time-picker razilo-modal .-container .-controls { display: block; width: 100%; text-align: center; overflow: hidden; }
+	razilo-time-picker razilo-modal .-container .-controls .-tag-box { width: 150px; display: inline-block; padding: 2px; }
+	razilo-time-picker razilo-modal .-container .-controls .-tag-box button { margin-left: 8px; margin-right: 8px; }
+	razilo-time-picker razilo-modal .-container .-controls .-close { position: absolute; right: 40px; }
+	razilo-time-picker razilo-modal .-container .-controls .-close:hover { opacity: 1; }
+	razilo-time-picker razilo-modal .-container .-frame { position: relative; }
+	razilo-time-picker razilo-modal .-container .-frame .-time { font-family: monospace; font-size: 30px; font-weight: bold; text-align: center; padding: 20px; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-time-picker">
+	<razilo-modal bind-attributes="{'show': showModal, 'color': color}">
+		<main>
+			<div class="-container">
+		        <div class="-controls -above">
+					<div class="-tag-box">
+						<button is="razilo-button" bind-show="showHour" size="medium" shape="round" color="grey" bind-event="{'click': setHour('1')}"><razilo-icon name="chevron-up"></razilo-icon></button>
+						<button is="razilo-button" bind-show="showMin" size="medium" shape="round" color="grey" bind-event="{'click': setMin('1')}"><razilo-icon name="chevron-up"></razilo-icon></button>
+						<button is="razilo-button" bind-show="showSec" size="medium" shape="round" color="grey" bind-event="{'click': setSec('1')}"><razilo-icon name="chevron-up"></razilo-icon></button>
+					</div>
+					<button is="razilo-button" class="-close" shape="round" color="red" size="medium" bind-event="{'click': hide()}"><razilo-icon name="times"></razilo-icon></button>
+		        </div>
+				<div class="-frame">
+					<div class="-time">
+						<span bind-text="value" alter-text="{'date': format}"></span>
+					</div>
+				</div>
+		        <div class="-controls -below">
+					<div class="-tag-box">
+						<button is="razilo-button" bind-show="showHour" size="medium" shape="round" color="grey" bind-event="{'click': setHour('-1')}"><razilo-icon name="chevron-down"></razilo-icon></button>
+						<button is="razilo-button" bind-show="showMin" size="medium" shape="round" color="grey" bind-event="{'click': setMin('-1')}"><razilo-icon name="chevron-down"></razilo-icon></button>
+						<button is="razilo-button" bind-show="showSec" size="medium" shape="round" color="grey" bind-event="{'click': setSec('-1')}"><razilo-icon name="chevron-down"></razilo-icon></button>
+					</div>
+					<button is="razilo-button" class="-close" shape="round" color="green" size="medium" bind-event="{'click': selectTime()}"><razilo-icon name="check"></razilo-icon></button>
+		        </div>
+			</div>
+		</main>
+	</razilo-modal>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-time-picker', {
+		showModal: false,
+		format: 'HH:MM',
+		color: 'white',
+
+		value: new Date(),
+
+		showHour: true,
+		showMin: true,
+		showSec: true,
+
+		attached: function ()
+		{
+			this.format = this.getHost().getAttribute('format') || this.format;
+			this.color = this.getHost().getAttribute('color') || this.color;
+			this.setFormat();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'value':
+					this.updateValue(this.getHost().value || newVal);
+				break;
+				case 'format':;
+					this.format = newVal || 'HH:MM';
+					this.setFormat();
+				break;
+				case 'color':
+					this.color = newVal;
+				break;
+				case 'show':
+					if (newVal === null) this.showModal = false;
+					else
+					{
+						var val = this.getHost().value;
+						if (!val)
+						{
+							val = this.getHost().getAttribute('value');
+							if (val && val.indexOf('object') >= 0) val = null;
+						}
+
+						this.showModal = true;
+						this.updateValue(this.getHost().value);
+					}
+				break;
+			}
+		},
+
+		updateValue: function(val)
+		{
+			if (val instanceof Date) this.value = new Date(val);
+			else if (!isNaN(val) && val != null) this.value = new Date(val);
+			else if (typeof val === 'string') this.value = new Date(Date.parse(val))
+			else this.value = new Date();
+		},
+
+		setFormat: function ()
+		{
+			this.showHour = this.format.indexOf('h') >= 0 || this.format.indexOf('H') >= 0 ? true : false;
+			this.showMin = this.format.indexOf('m') >= 0 || this.format.indexOf('M') >= 0 ? true : false;
+			this.showSec = this.format.indexOf('s') >= 0 || this.format.indexOf('S') >= 0 ? true : false;
+		},
+
+		show: function()
+		{
+			this.getHost().setAttribute('show', '');
+		},
+
+		hide: function()
+		{
+			this.getHost().removeAttribute('show');
+		},
+
+		setHour: function(ev, val)
+		{
+			this.value = new Date(this.value.setHours(this.value.getHours() + parseInt(val)));
+		},
+
+		setMin: function(ev, val)
+		{
+			this.value = new Date(this.value.setMinutes(this.value.getMinutes() + parseInt(val)));
+		},
+
+		setSec: function(ev, val)
+		{
+			this.value = new Date(this.value.setSeconds(this.value.getSeconds() + parseInt(val)));
+		},
+
+		selectTime: function(ev)
+		{
+			this.getHost().removeAttribute('show');
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		}
+	});
+</script>
+<script>
+	new RaziloComponent('razilo-partial', {
+		basepath: null,
+		partial: null,
+
+		created: function()
+		{
+			// Initial setup
+			this.basepath = this.getHost().getAttribute('basepath') || this.basepath;
+			this.partial = this.getHost().getAttribute('partial') || this.partial;
+
+			this.load();
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			if (oldVal == newVal) return;
+			if (name == 'basepath') this.basepath = newVal;
+			if (name == 'partial')
+			{
+				this.partial = newVal;
+				this.load();
+			}
+		},
+
+		load: function()
+		{
+			if (this.partial === null) return;
+
+			// retrict urls to html, htm files only
+			var path = this.basepath === null ? '' : (this.basepath.substr(-1) !== '/' ? this.basepath : this.basepath.substring(0, this.basepath.length - 1));
+			var partial = path + (path.length > 1 ? '/' : '') + this.partial.split('.')[0] + '.html';
+
+			// do async request to grab content
+			var XHR = XMLHttpRequest || ActiveXObject;
+			var request = new XHR('MSXML2.XMLHTTP.3.0');
+			var scope = this;
+			request.open('GET', partial, true);
+			request.onreadystatechange = function ()
+			{
+				if (request.readyState === 4)
+				{
+					if (request.status === 200)
+					{
+						var frag = document.createElement('FRAG');
+						frag.innerHTML = request.responseText;
+
+						var depends = frag.querySelector('dependencies');
+
+						if (depends)
+						{
+							// we have deps, so are they loaded?
+							if (!document.querySelector("dependencies[path='"+ partial +"']"))
+							{
+								depends.setAttribute('path', partial);
+								frag.removeChild(depends);
+
+								// monitor deps loading to promise
+								var promises = [];
+								for (var i = 0; i < depends.childNodes.length; i++) {
+									if (depends.childNodes[i].nodeType == 1)
+									{
+										promises[i] = new Promise(function(resolve)
+										{
+											depends.childNodes[i].addEventListener('load', function(ev) { return resolve(3); });
+										});
+									}
+								}
+
+								// once all deps loaded, load inner html
+								Promise.all(promises).then(function(){
+									setTimeout(function()
+									{
+										scope.getHost().innerHTML = frag.innerHTML;
+										scope.fireEvent('loaded');
+									},1);
+								});
+
+								document.querySelector('head').appendChild(depends);
+							}
+							else
+							{
+								setTimeout(function()
+								{
+									// immediately load if no deps to worry about
+									scope.getHost().innerHTML = frag.innerHTML;
+									scope.fireEvent('loaded');
+								},1);
+							}
+						}
+						else
+						{
+							setTimeout(function()
+							{
+								// immediately load if no deps to worry about
+								scope.getHost().innerHTML = frag.innerHTML;
+								scope.fireEvent('loaded');
+							},1);
+						}
+					}
+					else throw 'razilo-partial: Error loading partial [' + partial + ']';
+				}
+			};
+			request.send();
+		}
+	});
+</script>
+<style>
+	razilo-router, razilo-router .-outlet { margin: 0px; padding: 0px; width: inherit; display: block; }
+	razilo-router .-routes { display: none; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-router">
+	<div class="-routes">
+		<content></content>
+	</div>
+	<div class="-outlet"></div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-router', {
+		ready: false,
+		value: null,
+		protocol: null,
+		host: null,
+		port: null,
+		defaultRoute: null,
+		notFoundRoute: null,
+		basepath: null,
+		pushState: null,
+
+		created: function() {
+			this.defaultRoute = this.getHost().getAttribute('default-route') || this.defaultRoute;
+			this.notFoundRoute = this.getHost().getAttribute('not-found-route') || this.notFoundRoute;
+			this.basepath = this.getHost().hasAttribute('basepath') ? this.getHost().getAttribute('basepath').replace(/http:\/\/|https:\/\//, '') : this.basepath;
+			this.pushState = this.getHost().hasAttribute('push-state');
+		},
+
+		attached: function()
+		{
+			// set up config
+			this.protocol = window.location.protocol;
+			this.host = window.location.host;
+			this.port = window.location.port;
+			var value = window.location.hash.replace(/#|!/g, '');
+
+			// check for push state
+			if (this.pushState && history.pushState && history.replaceState) {
+				var base = document.querySelector('base');
+				if (!base) throw 'Cannot use push state without base ref set in index page, please set <base href="/">';
+				var baseRef = base.getAttribute('href');
+				if (!baseRef) throw 'Cannot use push state without base ref set in index page, please set <base href="/">';
+
+				var pointer = window.location.pathname.indexOf(baseRef) + baseRef.length;
+				value = window.location.pathname.substring(pointer, window.location.pathname.length);
+				history.replaceState({'route': value || this.defaultRoute}, '', value || this.defaultRoute);
+			} else this.pushState = false;
+
+			// set value
+			this.ready = true;
+			this.getHost().setAttribute('value', value || this.defaultRoute);
+
+			// watch for back and forwards
+			window.addEventListener('popstate', this.historyChanged.bind(this));
+		},
+
+		detached: function()
+		{
+			window.removeEventListener('popstate', this.historyChanged);
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'default-route':
+					this.defaultRoute = newVal;
+				break;
+				case 'not-found-route':
+					this.notFoundRoute = newVal;
+				break;
+				case 'basepath':
+					this.basepath = newVal ? newValue.replace(/http:\/\/|https:\/\//, '') : '';
+				break;
+				case 'push-state':
+					this.pushState = newVal !== null && history.pushState && history.replaceState ? true : false;
+				break;
+				case 'value':
+					if (this.ready) {
+						this.value = typeof newVal !== 'undefined' && newVal.length > 0 ? newVal : this.defaultRoute;
+						this.changeRoute();
+					}
+				break;
+			}
+		},
+
+		historyChanged: function(route)
+		{
+			var value = this.pushState ? route.state.route || this.defaultRoute : window.location.hash.replace(/#|!/g, '');
+			this.getHost().setAttribute('value', value);
+		},
+
+		changeRoute: function()
+		{
+			// get route, if url, then do this and return
+			var route = this.getRoute();
+
+			// if url route, divert off
+			if (route.getAttribute('url')) return this.updateUrl(route);
+
+			// component route
+			this.updateComponent(route);
+
+			// set state
+			this.setLocation();
+
+			// update value and issue change
+			this.getHost().value = this.value;
+			this.fireEvent('change');
+		},
+
+		getRoute: function()
+		{
+			var route = this.getHost().querySelector('razilo-router-route[route="' + this.value + '"]');
+			if (!route && this.notFoundRoute) route = this.getHost().querySelector('razilo-router-route[route="' + this.notFoundRoute + '"]');
+			if (!route) throw 'No route found and not-found-route not configured, please configure a not-found-route';
+
+			return route;
+		},
+
+		setLocation: function()
+		{
+			if (this.pushState) {
+				if (history.state.route !== this.value) history.pushState({'route': this.value}, '', this.value);
+			} else {
+				var newLoc = this.protocol + '//' + this.host + (window.location.port ? ':' + window.location.port : '') + '/#!' + this.value;
+				if (typeof this.value === 'string' && this.value.length > 0 && window.location.href != newLoc) window.location.href = newLoc;
+			}
+		},
+
+		updateUrl: function(route) {
+			if (!route.hasAttribute('target')) window.location.href = route.getAttribute('url');
+			else window.open(route.getAttribute('url'), route.getAttribute('target'));
+		},
+
+		updateComponent: function(route) {
+			// get details and check
+			var component = route.getAttribute('component');
+			var name = route.getAttribute('component-name');
+			if (!name) throw 'No route attribute "component-name" set, please set your component name on route e.g. component-name="my-component" on ' + route.outerHTML;
+			if (name.indexOf('-') < 0) throw 'Bad route attribute "component-name" set, please use a custom element name with a hyphon in it as per web component specs on ' + route.outerHTML;
+
+			// try to create, load if not loaded
+			element = document.createElement(name.toUpperCase());
+			if (route.hasAttribute('cloak')) element.setAttribute('cloak', '');
+			if (!element.razilobind) this.loadComponent(component);
+
+			// patch in component
+			var outlet = this.getHost().querySelector('.-outlet');
+			outlet.innerHTML = '';
+			outlet.appendChild(element);
+
+			// unlcoak if cloaked
+			if (route.hasAttribute('cloak')) setTimeout(function() { element.setAttribute('cloak', 'false') }, 25);
+		},
+
+		loadComponent: function(component)
+		{
+			// retrict component paths to html, htm files only
+			if (!component || ['htm', 'html'].indexOf(component.split('.').pop().toLowerCase()) < 0) throw 'Bad route attribute "component" set, ensure component attribute points to a .htm or .html component file on ' + route.outerHTML;
+
+			// set full path
+			var basepath = this.basepath === null ? '' : (this.basepath.substr(-1) !== '/' ? this.basepath : this.basepath.substring(0, this.basepath.length - 1));
+			var path = basepath + (basepath.length > 1 ? '/' : '') + component;
+
+			// inject component in head
+			var link = document.createElement('LINK');
+			link.setAttribute('rel', 'import');
+			link.setAttribute('href', path);
+			document.querySelector('head').appendChild(link);
+		}
+	});
+</script>
+<style>
+	razilo-menu-links { margin: 0px; padding: 0px; display: block; color: inherit; list-style-type: none; border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+</style>
+
+<template id="razilo-menu-links">
+	<content></content>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu-links');
+</script>
+
+<!-- razilo-menu-link -->
+
+<style>
+	razilo-menu-link { display: block; border-top: 1px solid rgba(0, 0, 0, 0.2); }
+	razilo-menu-link .link-item { padding: 10px 6px; font-size: inherit; line-height: inherit; cursor: pointer; color: inherit; opacity: 0.85; font-family: inherit; }
+	razilo-menu-link[active] .link-item { outline: 0; color: inherit; text-decoration: none; background-color: rgba(0, 0, 0, 0.2); }
+	razilo-menu-link:hover .link-item { outline: 0; color: inherit; text-decoration: none; opacity: 1; text-shadow: 0px 0px 6px rgba(150, 150, 150, 1); }
+</style>
+
+<template id="razilo-menu-link">
+	<div class="link-item" bind-event="{'click': setRoute()}">
+		<razilo-icon bind-show="icon" bind-attributes="{'name': icon}" fw=""></razilo-icon>
+		<content></content>
+	</div>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu-link', {
+		icon: '',
+		route: '',
+		value: '',
+
+		attached: function() {
+			this.icon = this.getHost().getAttribute('icon') || this.icon;
+			this.route = this.getHost().getAttribute('route') || this.route;
+			this.value = this.getHost().getAttribute('value') || this.value;
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'icon': this.icon = newVal; break;
+				case 'route': this.topLogo = newVal; break;
+				case 'value': this.value = newVal; break;
+			}
+
+			if (this.route == this.value) this.getHost().setAttribute('active', '');
+			else this.getHost().removeAttribute('active');
+		},
+
+		setRoute: function() {
+			this.getHost().value = this.route;
+			this.fireEvent('change');
+		}
+	});
+</script>
+
+<!-- razilo-menu-quicklinks -->
+
+<style>
+	razilo-menu-quicklinks { display: block; text-align: center; padding: 10px; }
+</style>
+
+<template id="razilo-menu-quicklinks">
+	<content></content>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu-quicklinks');
+</script>
+
+<!-- razilo-menu-quicklink -->
+
+<style>
+	razilo-menu-quicklink { display: inline-block; width: 30px; height: 30px; padding: 2px; }
+	razilo-menu-quicklink .link-item { display: inline-block; width: 30px; height: 30px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; opacity: 0.8; }
+	razilo-menu-quicklink .link-item:hover { opacity: 1; }
+	razilo-menu-quicklink .link-item.active { opacity: 1; background-color: rgba(0, 0, 0, 0.2); }
+	razilo-menu-quicklink .link-item .ql-icon { line-height: 28px; }
+</style>
+
+<template id="razilo-menu-quicklink">
+	<div class="link-item" bind-event="{'click': setRoute()}">
+		<razilo-icon class="ql-icon" bind-attributes="{'name': icon}" fw=""></razilo-icon>
+	</div>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu-quicklink', {
+		icon: '',
+		route: '',
+		value: '',
+
+		attached: function() {
+			this.icon = this.getHost().getAttribute('icon') || this.icon;
+			this.route = this.getHost().getAttribute('route') || this.route;
+			this.value = this.getHost().getAttribute('value') || this.value;
+		},
+
+		setRoute: function() {
+			this.getHost().value = this.route;
+			this.fireEvent('change');
+		}
+	});
+</script>
+
+<!-- razilo-menu-copyright -->
+
+<style>
+	razilo-menu-copyright { display: block; font-size: 12px; width: 100%; height: 250px; }
+	razilo-menu-copyright .copyright-box { position: absolute; bottom: 0px; width: inherit; background-color: rgba(0, 0, 0, 0.2); width: 100%; padding: 10px; box-sizing: border-box; }
+</style>
+
+<template id="razilo-menu-copyright">
+	<div class="copyright-box">
+		<content></content>
+	</div>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu-copyright');
+</script>
+
+<!-- razilo-menu -->
+
+<style>
+	razilo-menu { display: block; margin: 0; padding: 0; box-sizing: border-box; width: 225px; background-color: #eee; color: #222; position: absolute; top: 0px; left: 0px; z-index: 1000; overflow: auto; }
+	razilo-menu * { color: inherit; }
+	razilo-menu razilo-icon[name="bars"] { display: none; }
+	razilo-menu .top-logo { display: none; }
+	razilo-menu .side-logo { display: none; width: 100%; padding: 10px; box-sizing: border-box; }
+	razilo-menu .top-logo .top-logo-text, razilo-menu .side-logo .side-logo-text { min-height: 40px; line-height: 40px; opacity: 0.85; cursor: pointer; }
+	razilo-menu .top-logo img, razilo-menu .side-logo img { cursor: pointer; }
+	@media (max-width:720px) {
+		razilo-menu { width: 100%; height: auto; top: 0px; left: 0px; overflow: hidden; position: absolute; }
+		razilo-menu .side-only { display: none; }
+		razilo-menu razilo-icon[name="bars"] { font-size: 18px; line-height: 40px; opacity: 0.85; display: block; position: absolute; top: 0px; right: 8px; cursor: pointer; }
+		razilo-menu razilo-icon[name="bars"]:hover, razilo-menu razilo-icon[name="bars"]:active, razilo-menu razilo-icon[name="bars"]:focus { opacity: 1; }
+		razilo-menu .top-logo { display: inline-block; height: 40px; }
+		razilo-menu .top-logo img { display: inline-block; height: 36px; margin-left: 2px; margin-top: 2px; float: left; }
+		razilo-menu .top-logo .top-logo-text { display: inline-block; padding-left: 5px; }
+		razilo-menu .top-logo .top-logo-text:empty { display: inline; }
+	}
+	@media (min-width:721px) {
+		razilo-menu { min-height: 100%; } .menu, razilo-menu .side-only { display: block !important; }
+		razilo-menu .side-logo-text { display: block; }
+		razilo-menu .side-logo-text:empty { display: none; }
+		razilo-menu .side-logo img { margin-top: 10px; margin-bottom: 10px; display: inline-block; max-width: 100%; }
+		razilo-menu .side-logo { display: block; text-align: center; width: 100%; }
+	}
+</style>
+
+<template id="razilo-menu">
+	<razilo-icon fw="" name="bars" bind-event="{'click': toggleMenu()}"></razilo-icon>
+	<div class="side-logo">
+		<img bind-show="sideLogo" bind-src="sideLogo" bind-event="{'click': setRoute(home)}" default="" alt="logo">
+		<span class="side-logo-text" bind-text="sideLogoText" bind-event="{'click': setRoute(home)}" default=""></span>
+	</div>
+	<div class="top-logo">
+		<img bind-if="topLogo" bind-src="topLogo" bind-event="{'click': setRoute(home)}" default="" alt="logo">
+		<span class="top-logo-text" bind-text="topLogoText" bind-event="{'click': setRoute(home)}" default=""></span>
+	</div>
+	<div class="menu" bind-show="show">
+		<content select="razilo-menu-quicklinks"></content>
+		<content select="razilo-menu-links"></content>
+	</div>
+	<div class="footer side-only">
+		<content select="razilo-menu-copyright"></content>
+	</div>
+</template>
+
+<script>
+	new RaziloComponent('razilo-menu', {
+		home: null,
+		show: false,
+		sideLogoText: null,
+		topLogoText: null,
+		sideLogo: null,
+		topLogo: null,
+
+		attached: function()
+		{
+			// Initial setup
+			this.sideLogo = this.getHost().getAttribute('side-logo') || this.sideLogo;
+			this.topLogo = this.getHost().getAttribute('top-logo') || this.topLogo;
+			this.sideLogoText = this.getHost().getAttribute('side-logo-text') || this.sideLogoText;
+			this.topLogoText = this.getHost().getAttribute('top-logo-text') || this.topLogoText;
+			this.home = this.getHost().getAttribute('home') || this.home;
+		},
+
+		attributeChanged: function(name, oldVal, newVal)
+		{
+			switch (name)
+			{
+				case 'side-logo': this.sideLogo = newVal; break;
+				case 'top-logo': this.topLogo = newVal; break;
+				case 'side-logo-text': this.sideLogoText = newVal; break;
+				case 'top-logo-text': this.topLogoText = newVal; break;
+				case 'home': this.home = newVal; break;
+				case 'value': this.show = false; break;
+			}
+		},
+
+		setRoute: function(ev, route)
+		{
+			ev.stopPropagation();
+			ev.preventDefault();
+
+			this.getHost().value = route;
+			this.show = false;
+			this.fireEvent('change');
+		},
+
+		toggleMenu: function()
+		{
+			this.show = !this.show;
+		}
+	});
+</script>
+<style>
+	razilo-page { display: block; width: inherit; box-sizing: border-box; }
+	razilo-page .logo { display: none; }
+	razilo-page .adjuster { display: inline-block; }
+	razilo-page[layout="page"] { padding: 0px 0px 0px 225px; min-height: 100%; height: auto; }
+	razilo-page[layout="wizard"] { position: absolute; z-index: 1001; min-height: 100%; padding: 100px 40px 40px 40px; top: 0px; left: 0px; }
+	razilo-page[layout="wizard"] .adjuster { width: inherit; background-color: #fafafa; }
+	razilo-page[layout="wizard"] .logo { display: block; max-height: 60px; position: absolute; top: 0px; left: 40px; -webkit-transform: translate(0%, 50%); -moz-transform: translate(0%, 50%); -o-transform: translate(0%, 50%); transform: translate(0%, 50%); }
+	razilo-page[layout="notice"] { position: absolute; z-index: 1001; padding-top: 100px; }
+	razilo-page[layout="notice"] .adjuster { width: inherit; background-color: #fafafa; }
+	razilo-page[layout="notice"] .logo { display: block; max-height: 60px; position: absolute; top: 0px; left: 10px; -webkit-transform: translate(0%, 50%); -moz-transform: translate(0%, 50%); -o-transform: translate(0%, 50%); transform: translate(0%, 50%); }
+	@media (max-width: 720px) { razilo-page[layout="page"] { padding: 40px 0px 0px 0px; height: auto; overflow: initial; }}
+</style>
+
+<!-- TEMPLATE -->
+<template id="razilo-page">
+	<img class="logo" bind-show="logo" bind-src="logo" bind-attributes="{'alt': logoName}">
+	<div class="adjuster" bind-style="{'min-height': adjusterHeight}"><content></content></div>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('razilo-page', {
+		layout: '',
+		logo: '',
+		logoName: '',
+		adjusterHeight: '',
+
+		attached: function() {
+			this.layout = this.getHost().getAttribute('layout') || this.layout;
+			this.logo = this.getHost().getAttribute('logo') || this.logo;
+			this.logoName = this.getHost().getAttribute('logo-name') || this.logoName;
+
+			this.setMinHeight();
+			window.addEventListener('resize', this.setMinHeight.bind(this));
+		},
+
+		detached: function() {
+			window.removeEventListener('resize', this.setMinHeight.bind(this));
+		},
+
+		setMinHeight: function() {
+			var menu = document.querySelector('razilo-menu');
+			this.getHost().style.minHeight =  window.innerHeight + 'px';
+
+			if (this.layout === 'wizard')
+			{
+				this.adjusterHeight = window.innerHeight - 140 + 'px';
+				if (menu) menu.style.display = 'none';
+			}
+			else if (this.layout === 'notice')
+			{
+				this.adjusterHeight = window.innerHeight - 100 + 'px';
+				if (menu) menu.style.display = 'none';
+			}
+			else
+			{
+				if (menu) menu.style.display = '';
+			}
+		}
+	});
+</script>
+<style>
+	app-404 { margin: 0; padding: 0; display: block; background-color: #ddd; }
+	app-404 razilo-page { background-color: #444; width: 100%; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-404">
+	<razilo-page layout="notice" logo="/assets/images/blade-white-50-circle.png" logo-name="Boom">
+		<p>Component APP 404</p>
+	</razilo-page>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('app-404', {
+		attached: function() {
+			console.log('404 attached');
+		},
+
+		detached: function() {
+			console.log('404 detached');
+		}
+	});
+</script>
+<script>
+	new RaziloComponent('app-index', {
+		route: '',
+
+		attached: function() {
+			setTimeout(this.uncloak.bind(this), 250);
+		},
+
+		uncloak: function() {
+			this.getHost().setAttribute('cloak', false);
+		}
+	});
+</script></div></body></html>

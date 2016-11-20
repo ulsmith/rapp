@@ -1,0 +1,33 @@
+<!--
+* My Application
+* app-three - Simple single page app start point
+* @author Paul Smith (smiffy6969)
+* @site component.razilo.net
+* @licence MIT
+-->
+
+<!-- STYLE - Encapsulate all css to tag name -->
+<style>
+	app-404 { margin: 0; padding: 0; display: block; background-color: #ddd; }
+	app-404 razilo-page { background-color: #444; width: 100%; }
+</style>
+
+<!-- TEMPLATE -->
+<template id="app-404">
+	<razilo-page layout="notice" logo="/assets/images/blade-white-50-circle.png" logo-name="Boom">
+		<p>Component APP 404</p>
+	</razilo-page>
+</template>
+
+<!-- LOGIC -->
+<script>
+	new RaziloComponent('app-404', {
+		attached: function() {
+			console.log('404 attached');
+		},
+
+		detached: function() {
+			console.log('404 detached');
+		}
+	});
+</script>
