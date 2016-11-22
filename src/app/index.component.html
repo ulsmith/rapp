@@ -33,9 +33,9 @@
 			<razilo-menu-link icon="question-circle" route="four" bind-value="route">Four</razilo-menu-link>
 			<razilo-menu-link icon="question-circle" route="404" bind-value="route">404</razilo-menu-link>
 		</razilo-menu-links>
-		<razilo-menu-copyright>
+		<razilo-menu-footer>
 			<span class="copyright">&copy; Your Company</span>
-		</razilo-menu-copyright>
+		</razilo-menu-footer>
 	</razilo-menu>
 	<razilo-router default-route="one" not-found-route="404" bind-value="route" push-state>
 		<razilo-router-route route="one" component="/src/app/one.component.html" component-name="app-one" cloak></razilo-router-route>
@@ -45,6 +45,7 @@
 		<razilo-router-route route="aaa" url="https://www.google.co.uk" target="_blank"></razilo-router-route>
 		<razilo-router-route route="account/login" component="/src/app/account/login.component.html" component-name="app-account-login" cloak></razilo-router-route>
 	</razilo-router>
+	<razilo-store></razilo-store>
 </template>
 
 <!-- LOGIC -->
@@ -54,6 +55,13 @@
 
 		attached: function() {
 			setTimeout(this.uncloak.bind(this), 250);
+
+			// console.log(document.querySelector('razilo-store').setItem('foo', {bar: 'barpoo', baz: 'bazpoo'}));
+			//
+			// console.log(document.querySelector('razilo-store').getItem('foo'));
+			// // console.log(document.querySelector('razilo-store').getItem('foo').bar);
+			// console.log(document.querySelector('razilo-store').getItem('foo.bar'));
+			// console.log(document.querySelector('razilo-store').getItem('foo.baz'));
 		},
 
 		uncloak: function() {

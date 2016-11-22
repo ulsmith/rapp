@@ -11,7 +11,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "razilocomponent": "^1.0.0",
-    "razilocomponents": "^1.0.0"
+    "razilocomponents": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
