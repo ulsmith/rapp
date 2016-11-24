@@ -11,6 +11,7 @@ app.use('/assets', express.static(__dirname + '/assets'));
 app.use('/build', express.static(__dirname + '/build'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/test', express.static(__dirname + '/test'));
 
 // Routing - Index
 app.get('*', function (req, res) {

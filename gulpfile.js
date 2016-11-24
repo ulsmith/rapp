@@ -66,3 +66,22 @@ gulp.task('watch', ['build'], function() {
 		'./index.scss'
 	], ['build-sass']);
 });
+
+/*************************/
+/* Testing Using Jasmine */
+/*************************/
+
+var Server = require('karma').Server;
+
+gulp.task('test-once', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js'
+  }, done).start();
+});

@@ -1,0 +1,14 @@
+version: '2'
+services:
+  rapp:
+    build: ./
+    container_name: rapp
+    labels:
+      - "traefik.backend=rapp"
+      - "traefik.frontend.rule=Host:rapp.docker.localhost"
+    volumes:
+      - ./:/app
+networks:
+  default:
+    external:
+      name: docker_docker-localhost
